@@ -1,0 +1,19 @@
+.container-options {
+  background-color: violet;
+  width: 100%;
+  min-height: 100%;
+  overflow-y: auto;
+}
+
+.for-text {
+  align-items: center;
+  align-items: flex-end;
+  align-items: flex-start;
+  align-items: stretch;
+
+  align-content: center;
+  align-content: flex-end;
+  align-content: flex-start;
+  align-content: space-around;
+  align-content: space-between;
+}

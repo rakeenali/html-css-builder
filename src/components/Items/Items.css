@@ -1,0 +1,17 @@
+.container-item {
+  /* background-color: blue; */
+  width: 100%;
+  height: 100%;
+}
+
+.container-item hr {
+  margin-bottom: 20px;
+}
+
+.container-item .pointer {
+  cursor: pointer;
+}
+
+.container-item .pointer:hover {
+  color: blue;
+}

@@ -1,0 +1,10 @@
+.container {
+  position: relative;
+  margin-top: 50px;
+  height: calc(100vh - 50px);
+  width: 100vw;
+  display: grid;
+  grid-template-columns: 150px auto 300px;
+  grid-template-rows: auto;
+  overflow: hidden;
+}
