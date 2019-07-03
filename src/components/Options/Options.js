@@ -10,8 +10,13 @@ import TextInput from "../Inputs/TextInput";
 import NumberInput from "../Inputs/NumberInput";
 import SelectInput from "../Inputs/SelectRenderProps";
 
+import ClassInput from "../Inputs/ClassInput";
+import IdInput from "../Inputs/IdInput";
+
 import ParagraphInput from "../Inputs/ParagraphInput";
 import LinkInput from "../Inputs/LinkInput";
+import PlaceholderInput from "../Inputs/PlaceholderInput";
+import OptionInput from "../Inputs/OptionInput";
 
 import { ITEM_TYPES } from "./Item_Types";
 
@@ -26,12 +31,16 @@ const OPTIONS_STATE = {
   display: "",
   margin: "",
   padding: "",
-  color: ""
+  color: "",
+  listStyle: "",
+  listStyleType: "",
+  boxShadow: ""
 };
 
 const INNER_STATE = {
   text: "",
   href: "",
+  placeholder: "",
   hasInner: false
 };
 
@@ -48,6 +57,9 @@ export default function Options() {
   const [currentElement, setCurrentElement] = useState("");
   const [options, setOptions] = useState(OPTIONS_STATE);
   const [innerOptions, setInnerOptions] = useState(INNER_STATE);
+  const [elementClass, setElementClass] = useState("");
+  const [elementId, setElementId] = useState("");
+  const [selectOption, setSelectOption] = useState([]);
 
   // LIFECYCLES
   React.useEffect(() => {
@@ -121,6 +133,14 @@ export default function Options() {
     });
   };
 
+  const resetAll = () => {
+    setCurrentElement("");
+    setOptions(OPTIONS_STATE);
+    setInnerOptions(INNER_STATE);
+    setElementClass("");
+    setElementId("");
+  };
+
   const onSubmit = e => {
     e.preventDefault();
     if (currentElement) {
@@ -141,23 +161,52 @@ export default function Options() {
           if (innerOptions.hasInner) {
             element.innerText = innerOptions.text;
             element.href = innerOptions.href;
+            element.placeholder = innerOptions.placeholder;
           }
-          element.style.boxShadow = "none";
+
+          if (elementClass.trim() !== "") {
+            element.classList = elementClass;
+          }
+
+          if (elementId.trim() !== "") {
+            element.id = elementId;
+          }
+          if (selectOption.length > 0) {
+            let text = selectOption
+              .map(option => {
+                return `<option>${option}</option>`;
+              })
+              .join("");
+            element.innerHTML = text;
+          }
+
+          element.style.border = "none";
         }
       }
-      setCurrentElement("");
-      setOptions(OPTIONS_STATE);
-      setInnerOptions(INNER_STATE);
+      resetAll();
+    }
+  };
+
+  const deleteElement = e => {
+    e.preventDefault();
+    if (currentElement) {
+      const elements = document.querySelectorAll("[data-id]");
+      for (let element of elements) {
+        const id = element.getAttribute("data-id");
+        if (id === currentElement) {
+          element.remove();
+        }
+      }
+      resetAll();
     }
   };
 
   function itemClicked(e) {
-    console.log(e);
     const targetId = e.target.getAttribute("data-id");
     if (targetId) {
       setCurrentItemType(e.target.nodeName);
       setCurrentElement(targetId);
-      e.target.style.boxShadow = "3px 3px 3px white";
+      e.target.style.border = "3px solid yellow";
       return;
     }
     return;
@@ -171,6 +220,24 @@ export default function Options() {
 
       {currentElement ? (
         <form onSubmit={onSubmit}>
+          <IdInput
+            sendValue={n => {
+              setElementId(n);
+            }}
+            placeholder="e.g: identifier"
+            label="ID for the element"
+            defaultText="Id for the current element"
+          />
+          <br />
+          <ClassInput
+            sendValue={n => {
+              setElementClass(n);
+            }}
+            placeholder="e.g: class1, class2"
+            label="Class"
+            defaultText="Classes for the current element should be sperated by commas if mulitple"
+          />
+          <br />
           <NumberInput
             sendValue={onChange}
             propertyName="height"
@@ -209,6 +276,14 @@ export default function Options() {
             placeholder="Color"
             label="Color"
             defaultText="Color of the element"
+          />
+          <br />
+          <TextInput
+            sendValue={onChange}
+            propertyName="boxShadow"
+            placeholder="e.g: 1px 1px 1px red"
+            label="Box Shadow"
+            defaultText="Box shadow for the element"
           />
           <br />
           <FourNumberInput
@@ -278,7 +353,7 @@ export default function Options() {
             <br />
             <SelectInput
               defaultValue=""
-              propertyName="alignItem"
+              propertyName="alignItems"
               label="Align Item"
               defaultText="Sets the item for the container"
               sendValue={onChange}
@@ -308,6 +383,43 @@ export default function Options() {
               )}
             />
           </div>
+          <div>
+            <hr />
+            List Properties
+            <br />
+            <br />
+            <SelectInput
+              defaultValue="circle"
+              propertyName="listStyle"
+              label="List Style"
+              defaultText="Sets the style of the list"
+              sendValue={onChange}
+              render={() => (
+                <>
+                  <option value="none">none</option>
+                  <option value="armenian">Armenian</option>
+                  <option value="circle">Circle</option>
+                  <option value="disc">Disc</option>
+                </>
+              )}
+            />
+            <br />
+            <SelectInput
+              defaultValue="circle"
+              propertyName="listStyleType"
+              label="List Style Type"
+              defaultText="Sets the style type of the list"
+              sendValue={onChange}
+              render={() => (
+                <>
+                  <option value="none">none</option>
+                  <option value="armenian">Armenian</option>
+                  <option value="circle">Circle</option>
+                  <option value="disc">Disc</option>
+                </>
+              )}
+            />
+          </div>
           <hr />
           <br />
           <ParagraphInput
@@ -325,8 +437,26 @@ export default function Options() {
             sendValue={changeInner}
           />
           <br />
+          <PlaceholderInput
+            propertyName="placeholder"
+            label="Placeholder"
+            placeholder="Placeholder"
+            defaultText="Placeholder for the input"
+            sendValue={changeInner}
+          />
+          <br />
+          <OptionInput
+            label="Options for select"
+            placeholder="e.g: Option1, Option 2"
+            defaultText="Options should be seprated by commas, if have more than one option for a select"
+            sendValue={options => setSelectOption(options)}
+          />
+          <br />
           <div>
             <button type="submit">Set Properties</button>
+            <button type="button" onClick={deleteElement}>
+              Delete
+            </button>
           </div>
         </form>
       ) : (

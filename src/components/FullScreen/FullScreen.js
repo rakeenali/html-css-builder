@@ -12,7 +12,6 @@ export default function FullScreen() {
   React.useEffect(() => {
     console.log("mounted");
     const code = document.querySelector(".drag-items");
-    // console.log(code.innerHTML);
     setHtmlCode(code.outerHTML);
   }, []);
 

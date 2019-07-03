@@ -51,7 +51,7 @@ export default function Dragarea(props) {
   React.useMemo(() => {
     if (menu.previewCode) {
       const code = document.querySelector(".drag-items");
-      setHtmlCode(code.innerHTML);
+      setHtmlCode(code.outerHTML);
     }
   }, [menu]);
 

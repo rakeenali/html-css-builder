@@ -9,7 +9,9 @@ import "./ContainerModal.css";
 const MODAL_STATE = {
   display: "block",
   flexDirection: "",
-  boxSizing: "border-box"
+  boxSizing: "border-box",
+  alignItems: "",
+  justifyContent: ""
 };
 
 export default function ContainerModal(props) {
@@ -79,6 +81,40 @@ export default function ContainerModal(props) {
                 </>
               )}
             />
+            <SelectRenderProps
+              defaultValue=""
+              propertyName="justifyContent"
+              label="Justify Content"
+              defaultText="Sets the contnent direction of the flex container"
+              sendValue={onChange}
+              render={() => (
+                <>
+                  <option value="center">Center</option>
+                  <option value="flex-end">Flex End</option>
+                  <option value="flex-start">Flex Start</option>
+                  <option value="space-around">Space Around</option>
+                  <option value="space-between">Space Between</option>
+                  <option value="space-evenly">Space Evenly</option>
+                  <option value="baseline">Baseline</option>
+                </>
+              )}
+            />
+            <br />
+            <SelectRenderProps
+              defaultValue=""
+              propertyName="alignItems"
+              label="Align Item"
+              defaultText="Sets the item for the container"
+              sendValue={onChange}
+              render={() => (
+                <>
+                  <option value="center">Center</option>
+                  <option value="flex-end">Flex End</option>
+                  <option value="flex-start">Flex Start</option>
+                </>
+              )}
+            />
+            <br />
             <div>
               <button type="submit">Set Properties</button>
             </div>

@@ -6,14 +6,15 @@
 }
 
 .for-text {
-  align-items: center;
-  align-items: flex-end;
-  align-items: flex-start;
-  align-items: stretch;
+  list-style: armenian;
+  list-style: circle;
+  list-style: disc;
+  list-style: none;
 
-  align-content: center;
-  align-content: flex-end;
-  align-content: flex-start;
-  align-content: space-around;
-  align-content: space-between;
+  list-style-type: disc;
+  list-style-type: circle;
+  list-style-type: disc;
+  list-style-type: none;
+
+  box-shadow: 1px 1px 1px red;
 }

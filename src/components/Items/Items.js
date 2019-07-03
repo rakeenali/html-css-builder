@@ -53,6 +53,31 @@ export default function Items() {
         </h3>
       </span>
       <span className="pointer">
+        <h3 draggable onDragEnd={dragEnd} data-type="H2">
+          h2
+        </h3>
+      </span>
+      <span className="pointer">
+        <h3 draggable onDragEnd={dragEnd} data-type="H3">
+          h3
+        </h3>
+      </span>
+      <span className="pointer">
+        <h3 draggable onDragEnd={dragEnd} data-type="H4">
+          h4
+        </h3>
+      </span>
+      <span className="pointer">
+        <h3 draggable onDragEnd={dragEnd} data-type="H5">
+          h5
+        </h3>
+      </span>
+      <span className="pointer">
+        <h3 draggable onDragEnd={dragEnd} data-type="H6">
+          h6
+        </h3>
+      </span>
+      <span className="pointer">
         <h3 draggable onDragEnd={dragEnd} data-type="BUTTON">
           button
         </h3>
@@ -65,6 +90,66 @@ export default function Items() {
       <span className="pointer">
         <h3 draggable onDragEnd={dragEnd} data-type="A">
           a
+        </h3>
+      </span>
+      <span className="pointer">
+        <h3 draggable onDragEnd={dragEnd} data-type="EM">
+          em
+        </h3>
+      </span>
+      <span className="pointer">
+        <h3 draggable onDragEnd={dragEnd} data-type="STRONG">
+          strong
+        </h3>
+      </span>
+      <span className="pointer">
+        <h3 draggable onDragEnd={dragEnd} data-type="BR">
+          br
+        </h3>
+      </span>
+      <span className="pointer">
+        <h3 draggable onDragEnd={dragEnd} data-type="BLOCKQUOTE">
+          blockquote
+        </h3>
+      </span>
+      <span className="pointer">
+        <h3 draggable onDragEnd={dragEnd} data-type="SPAN">
+          span
+        </h3>
+      </span>
+      <span className="pointer">
+        <h3 draggable onDragEnd={dragEnd} data-type="LABEL">
+          label
+        </h3>
+      </span>
+      <span className="pointer">
+        <h3 draggable onDragEnd={dragEnd} data-type="INPUT">
+          input
+        </h3>
+      </span>
+      <span className="pointer">
+        <h3 draggable onDragEnd={dragEnd} data-type="FORM">
+          form
+        </h3>
+      </span>
+      <span className="pointer">
+        <h3 draggable onDragEnd={dragEnd} data-type="SELECT">
+          select
+        </h3>
+      </span>
+      <span className="pointer">
+        <h3 draggable onDragEnd={dragEnd} data-type="UL">
+          ul
+        </h3>
+      </span>
+      <span className="pointer">
+        <h3 draggable onDragEnd={dragEnd} data-type="OL">
+          ol
+        </h3>
+      </span>
+      <span className="pointer">
+        <h3 draggable onDragEnd={dragEnd} data-type="LI">
+          li
         </h3>
       </span>
     </div>
