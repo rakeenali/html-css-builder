@@ -383,6 +383,59 @@ export default function Options() {
               )}
             />
           </div>
+          <br />
+          <div>
+            <hr />
+            Positioning
+            <br />
+            <SelectInput
+              defaultValue=""
+              propertyName="position"
+              label="Position"
+              defaultText="Sets the position of the element"
+              sendValue={onChange}
+              render={() => (
+                <>
+                  <option value="relative">Relative</option>
+                  <option value="fixed">Fixed</option>
+                  <option value="absolute">Absolute</option>
+                </>
+              )}
+            />
+            <br />
+            <TextInput
+              sendValue={onChange}
+              propertyName="top"
+              placeholder="Top Position"
+              label="Top"
+              defaultText="Top Position for the element"
+            />
+            <br />
+            <TextInput
+              sendValue={onChange}
+              propertyName="left"
+              placeholder="Left Position"
+              label="Left"
+              defaultText="Left Position for the element"
+            />
+            <br />
+            <TextInput
+              sendValue={onChange}
+              propertyName="bottom"
+              placeholder="Bottom Position"
+              label="Bottom"
+              defaultText="Bottom Position for the element"
+            />
+            <br />
+            <TextInput
+              sendValue={onChange}
+              propertyName="right"
+              placeholder="Right Position"
+              label="Right"
+              defaultText="Right Position for the element"
+            />
+            <br />
+          </div>
           <div>
             <hr />
             List Properties

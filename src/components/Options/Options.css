@@ -6,15 +6,7 @@
 }
 
 .for-text {
-  list-style: armenian;
-  list-style: circle;
-  list-style: disc;
-  list-style: none;
-
-  list-style-type: disc;
-  list-style-type: circle;
-  list-style-type: disc;
-  list-style-type: none;
-
-  box-shadow: 1px 1px 1px red;
+  position: relative;
+  position: fixed;
+  position: absolute;
 }
