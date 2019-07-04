@@ -1,0 +1,82 @@
+.container-options {
+  background-color: darken(#edf5e1, 20%);
+  width: 100%;
+  min-height: 100%;
+  text-align: center;
+  overflow-y: visible;
+
+  h2 {
+    margin: 8px 0;
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .attributes {
+      background-color: lighten(#379683, 10%);
+      width: 100%;
+      height: 35vh;
+      overflow-y: visible;
+      overflow-x: hidden;
+      border-bottom: 2px solid darken(#379683, 20%);
+
+      h4 {
+        font-weight: lighter;
+        font-size: 20px;
+        color: #fff;
+        margin-bottom: 4px;
+      }
+    }
+
+    .css-properties {
+      background-color: darken(#8ee4af, 10%);
+      width: 100%;
+      height: 40vh;
+      overflow-y: visible;
+      overflow-x: hidden;
+      border-bottom: 2px solid darken(#379683, 20%);
+
+      h4 {
+        font-weight: lighter;
+        font-size: 20px;
+        color: #fff;
+        margin-bottom: 4px;
+      }
+    }
+
+    .actions {
+      width: 100%;
+      height: 10vh;
+      overflow-y: hidden;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      button {
+        height: 50%;
+        width: 90%;
+
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        border-radius: 20px;
+        margin: 1px 0;
+        transition: all 0.3s;
+
+        &:hover {
+          width: 94%;
+        }
+      }
+      .submit {
+        background-color: green;
+        color: #fff;
+      }
+      .delete {
+        background-color: red;
+      }
+    }
+  }
+}

@@ -62,8 +62,6 @@ export default function ParagraphInput(props) {
   }, [currentItem]);
 
   const setValue = e => {
-    // console.log(state);
-    // sendValue(state.trim(), propertyName);
     const options = state.split(",").reduce((coll, val) => {
       if (val.trim() !== "") {
         coll = [...coll, val];
@@ -71,24 +69,39 @@ export default function ParagraphInput(props) {
       }
       return coll;
     }, []);
-    // console.log(options);
     sendValue(options);
   };
 
   if (canAddText) {
     return (
-      <div>
-        <label>{label}</label>
-        <br />
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          marginBottom: "15px",
+          marginTop: "5px",
+          alignContent: "center",
+          justifyContent: "center"
+        }}
+      >
+        <label style={{ fontWeight: "bolder" }}>{label}</label>
         <input
           type="text"
           placeholder={placeholder}
           value={state}
           onChange={e => setState(e.target.value)}
           onBlur={setValue}
+          style={{
+            width: "80%",
+            alignSelf: "center",
+            padding: "5px 4px",
+            outline: "none",
+            backgroundColor: "rgba(0,0,0,.7)"
+          }}
         />
-        <br />
-        <span>{defaultText}</span>
+        <span style={{ fontWeight: "light", color: "black", fontSize: "14px" }}>
+          {defaultText}
+        </span>
       </div>
     );
   }

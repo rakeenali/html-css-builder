@@ -20,7 +20,7 @@ import OptionInput from "../Inputs/OptionInput";
 
 import { ITEM_TYPES } from "./Item_Types";
 
-import "./Options.css";
+import "./Options.scss";
 
 const OPTIONS_STATE = {
   height: "",
@@ -219,295 +219,271 @@ export default function Options() {
       <hr />
 
       {currentElement ? (
-        <form onSubmit={onSubmit}>
-          <IdInput
-            sendValue={n => {
-              setElementId(n);
-            }}
-            placeholder="e.g: identifier"
-            label="ID for the element"
-            defaultText="Id for the current element"
-          />
-          <br />
-          <ClassInput
-            sendValue={n => {
-              setElementClass(n);
-            }}
-            placeholder="e.g: class1, class2"
-            label="Class"
-            defaultText="Classes for the current element should be sperated by commas if mulitple"
-          />
-          <br />
-          <NumberInput
-            sendValue={onChange}
-            propertyName="height"
-            placeholder="Height"
-            label="Height"
-            defaultText="Height will be in PX format if format no provided it will be default to PX"
-          />
-          <br />
-          <NumberInput
-            sendValue={onChange}
-            propertyName="width"
-            placeholder="Width"
-            label="Width"
-            defaultText="Width will be in PX format if format no provided it will be default to PX"
-          />
-          <br />
-          <NumberInput
-            sendValue={onChange}
-            propertyName="fontSize"
-            placeholder="Font Size"
-            label="Font Size"
-            defaultText="Font Size will be in PX format if format no provided it will be default to PX"
-          />
-          <br />
-          <TextInput
-            sendValue={onChange}
-            propertyName="backgroundColor"
-            placeholder="Background Color"
-            label="Background Color"
-            defaultText="Background Color of the element"
-          />
-          <br />
-          <TextInput
-            sendValue={onChange}
-            propertyName="color"
-            placeholder="Color"
-            label="Color"
-            defaultText="Color of the element"
-          />
-          <br />
-          <TextInput
-            sendValue={onChange}
-            propertyName="boxShadow"
-            placeholder="e.g: 1px 1px 1px red"
-            label="Box Shadow"
-            defaultText="Box shadow for the element"
-          />
-          <br />
-          <FourNumberInput
-            sendValue={onChange}
-            propertyName="margin"
-            label="Margin"
-            defaultText="Enter margin in the format of TOP,RIGHT,BOTTOM,LEFT"
-          />
-          <br />
-          <FourNumberInput
-            sendValue={onChange}
-            propertyName="padding"
-            label="Padding"
-            defaultText="Enter padding in the format of TOP,RIGHT,BOTTOM,LEFT"
-          />
-          <br />
-          <div>
-            <hr />
-            Flex Properties
-            <SelectInput
-              sendValue={onChange}
-              defaultValue="block"
-              propertyName="display"
-              label="Display"
-              defaultText="Display property of the container element"
-              render={() => (
-                <>
-                  <option value="block">Block</option>
-                  <option value="inline-block">Inline Block</option>
-                  <option value="flex">Flex</option>
-                </>
-              )}
+        <form onSubmit={onSubmit} className="form">
+          <div className="attributes">
+            <h4>HTML Attributes</h4>
+            <IdInput
+              sendValue={n => {
+                setElementId(n);
+              }}
+              placeholder="e.g: identifier"
+              label="ID for the element"
+              defaultText="Id for the current element"
             />
-            <br />
-            <SelectInput
-              defaultValue=""
-              propertyName="flexDirection"
-              label="Flex Direction"
-              defaultText="Sets the direction of the flex container"
-              sendValue={onChange}
-              render={() => (
-                <>
-                  <option value="column">Column</option>
-                  <option value="row">Row</option>
-                </>
-              )}
+            <ClassInput
+              sendValue={n => {
+                setElementClass(n);
+              }}
+              placeholder="e.g: class1, class2"
+              label="Class"
+              defaultText="Classes for the current element should be sperated by commas if mulitple"
             />
-            <br />
-            <SelectInput
-              defaultValue=""
-              propertyName="justifyContent"
-              label="Justify Content"
-              defaultText="Sets the contnent direction of the flex container"
-              sendValue={onChange}
-              render={() => (
-                <>
-                  <option value="center">Center</option>
-                  <option value="flex-end">Flex End</option>
-                  <option value="flex-start">Flex Start</option>
-                  <option value="space-around">Space Around</option>
-                  <option value="space-between">Space Between</option>
-                  <option value="space-evenly">Space Evenly</option>
-                  <option value="baseline">Baseline</option>
-                </>
-              )}
+            <ParagraphInput
+              propertyName="text"
+              label="Text"
+              placeholder="Inner text for the tag"
+              defaultText="Text to appear on inside of the element"
+              sendValue={changeInner}
             />
-            <br />
-            <SelectInput
-              defaultValue=""
-              propertyName="alignItems"
-              label="Align Item"
-              defaultText="Sets the item for the container"
-              sendValue={onChange}
-              render={() => (
-                <>
-                  <option value="center">Center</option>
-                  <option value="flex-end">Flex End</option>
-                  <option value="flex-start">Flex Start</option>
-                </>
-              )}
+            <LinkInput
+              propertyName="href"
+              label="Href"
+              placeholder="www.somesite.com"
+              defaultText="Link for the href"
+              sendValue={changeInner}
             />
-            <br />
-            <SelectInput
-              defaultValue=""
-              propertyName="alignContent"
-              label="Align Content"
-              defaultText="Sets the alignment of the flex container"
-              sendValue={onChange}
-              render={() => (
-                <>
-                  <option value="center">Center</option>
-                  <option value="flex-end">Flex End</option>
-                  <option value="flex-start">Flex Start</option>
-                  <option value="space-around">Space Around</option>
-                  <option value="space-between">Space Between</option>
-                </>
-              )}
+            <PlaceholderInput
+              propertyName="placeholder"
+              label="Placeholder"
+              placeholder="Placeholder"
+              defaultText="Placeholder for the input"
+              sendValue={changeInner}
+            />
+            <OptionInput
+              label="Options for select"
+              placeholder="e.g: Option1, Option 2"
+              defaultText="Options should be seprated by commas, if have more than one option for a select"
+              sendValue={options => setSelectOption(options)}
             />
           </div>
-          <br />
-          <div>
-            <hr />
-            Positioning
-            <br />
-            <SelectInput
-              defaultValue=""
-              propertyName="position"
-              label="Position"
-              defaultText="Sets the position of the element"
+          <div className="css-properties">
+            <h4>CSS Properties</h4>
+            <NumberInput
               sendValue={onChange}
-              render={() => (
-                <>
-                  <option value="relative">Relative</option>
-                  <option value="fixed">Fixed</option>
-                  <option value="absolute">Absolute</option>
-                </>
-              )}
+              propertyName="height"
+              placeholder="Height"
+              label="Height"
+              defaultText="Height will be in PX format if format no provided it will be default to PX"
             />
-            <br />
+            <NumberInput
+              sendValue={onChange}
+              propertyName="width"
+              placeholder="Width"
+              label="Width"
+              defaultText="Width will be in PX format if format no provided it will be default to PX"
+            />
+            <NumberInput
+              sendValue={onChange}
+              propertyName="fontSize"
+              placeholder="Font Size"
+              label="Font Size"
+              defaultText="Font Size will be in PX format if format no provided it will be default to PX"
+            />
             <TextInput
               sendValue={onChange}
-              propertyName="top"
-              placeholder="Top Position"
-              label="Top"
-              defaultText="Top Position for the element"
+              propertyName="backgroundColor"
+              placeholder="Background Color"
+              label="Background Color"
+              defaultText="Background Color of the element"
             />
-            <br />
             <TextInput
               sendValue={onChange}
-              propertyName="left"
-              placeholder="Left Position"
-              label="Left"
-              defaultText="Left Position for the element"
+              propertyName="color"
+              placeholder="Color"
+              label="Color"
+              defaultText="Color of the element"
             />
-            <br />
             <TextInput
               sendValue={onChange}
-              propertyName="bottom"
-              placeholder="Bottom Position"
-              label="Bottom"
-              defaultText="Bottom Position for the element"
+              propertyName="boxShadow"
+              placeholder="e.g: 1px 1px 1px red"
+              label="Box Shadow"
+              defaultText="Box shadow for the element"
             />
-            <br />
-            <TextInput
+            <FourNumberInput
               sendValue={onChange}
-              propertyName="right"
-              placeholder="Right Position"
-              label="Right"
-              defaultText="Right Position for the element"
+              propertyName="margin"
+              label="Margin"
+              defaultText="Enter margin in the format of TOP,RIGHT,BOTTOM,LEFT"
             />
-            <br />
+            <FourNumberInput
+              sendValue={onChange}
+              propertyName="padding"
+              label="Padding"
+              defaultText="Enter padding in the format of TOP,RIGHT,BOTTOM,LEFT"
+            />
+            <div>
+              Flex Properties
+              <SelectInput
+                sendValue={onChange}
+                defaultValue="block"
+                propertyName="display"
+                label="Display"
+                defaultText="Display property of the container element"
+                render={() => (
+                  <>
+                    <option value="block">Block</option>
+                    <option value="inline-block">Inline Block</option>
+                    <option value="flex">Flex</option>
+                  </>
+                )}
+              />
+              <SelectInput
+                defaultValue=""
+                propertyName="flexDirection"
+                label="Flex Direction"
+                defaultText="Sets the direction of the flex container"
+                sendValue={onChange}
+                render={() => (
+                  <>
+                    <option value="column">Column</option>
+                    <option value="row">Row</option>
+                  </>
+                )}
+              />
+              <SelectInput
+                defaultValue=""
+                propertyName="justifyContent"
+                label="Justify Content"
+                defaultText="Sets the contnent direction of the flex container"
+                sendValue={onChange}
+                render={() => (
+                  <>
+                    <option value="center">Center</option>
+                    <option value="flex-end">Flex End</option>
+                    <option value="flex-start">Flex Start</option>
+                    <option value="space-around">Space Around</option>
+                    <option value="space-between">Space Between</option>
+                    <option value="space-evenly">Space Evenly</option>
+                    <option value="baseline">Baseline</option>
+                  </>
+                )}
+              />
+              <SelectInput
+                defaultValue=""
+                propertyName="alignItems"
+                label="Align Item"
+                defaultText="Sets the item for the container"
+                sendValue={onChange}
+                render={() => (
+                  <>
+                    <option value="center">Center</option>
+                    <option value="flex-end">Flex End</option>
+                    <option value="flex-start">Flex Start</option>
+                  </>
+                )}
+              />
+              <SelectInput
+                defaultValue=""
+                propertyName="alignContent"
+                label="Align Content"
+                defaultText="Sets the alignment of the flex container"
+                sendValue={onChange}
+                render={() => (
+                  <>
+                    <option value="center">Center</option>
+                    <option value="flex-end">Flex End</option>
+                    <option value="flex-start">Flex Start</option>
+                    <option value="space-around">Space Around</option>
+                    <option value="space-between">Space Between</option>
+                  </>
+                )}
+              />
+            </div>
+            <div>
+              Positioning
+              <SelectInput
+                defaultValue=""
+                propertyName="position"
+                label="Position"
+                defaultText="Sets the position of the element"
+                sendValue={onChange}
+                render={() => (
+                  <>
+                    <option value="relative">Relative</option>
+                    <option value="fixed">Fixed</option>
+                    <option value="absolute">Absolute</option>
+                  </>
+                )}
+              />
+              <TextInput
+                sendValue={onChange}
+                propertyName="top"
+                placeholder="Top Position"
+                label="Top"
+                defaultText="Top Position for the element"
+              />
+              <TextInput
+                sendValue={onChange}
+                propertyName="left"
+                placeholder="Left Position"
+                label="Left"
+                defaultText="Left Position for the element"
+              />
+              <TextInput
+                sendValue={onChange}
+                propertyName="bottom"
+                placeholder="Bottom Position"
+                label="Bottom"
+                defaultText="Bottom Position for the element"
+              />
+              <TextInput
+                sendValue={onChange}
+                propertyName="right"
+                placeholder="Right Position"
+                label="Right"
+                defaultText="Right Position for the element"
+              />
+            </div>
+            <div>
+              List Properties
+              <SelectInput
+                defaultValue="circle"
+                propertyName="listStyle"
+                label="List Style"
+                defaultText="Sets the style of the list"
+                sendValue={onChange}
+                render={() => (
+                  <>
+                    <option value="none">none</option>
+                    <option value="armenian">Armenian</option>
+                    <option value="circle">Circle</option>
+                    <option value="disc">Disc</option>
+                  </>
+                )}
+              />
+              <SelectInput
+                defaultValue="circle"
+                propertyName="listStyleType"
+                label="List Style Type"
+                defaultText="Sets the style type of the list"
+                sendValue={onChange}
+                render={() => (
+                  <>
+                    <option value="none">none</option>
+                    <option value="armenian">Armenian</option>
+                    <option value="circle">Circle</option>
+                    <option value="disc">Disc</option>
+                  </>
+                )}
+              />
+            </div>
           </div>
-          <div>
-            <hr />
-            List Properties
-            <br />
-            <br />
-            <SelectInput
-              defaultValue="circle"
-              propertyName="listStyle"
-              label="List Style"
-              defaultText="Sets the style of the list"
-              sendValue={onChange}
-              render={() => (
-                <>
-                  <option value="none">none</option>
-                  <option value="armenian">Armenian</option>
-                  <option value="circle">Circle</option>
-                  <option value="disc">Disc</option>
-                </>
-              )}
-            />
-            <br />
-            <SelectInput
-              defaultValue="circle"
-              propertyName="listStyleType"
-              label="List Style Type"
-              defaultText="Sets the style type of the list"
-              sendValue={onChange}
-              render={() => (
-                <>
-                  <option value="none">none</option>
-                  <option value="armenian">Armenian</option>
-                  <option value="circle">Circle</option>
-                  <option value="disc">Disc</option>
-                </>
-              )}
-            />
-          </div>
-          <hr />
-          <br />
-          <ParagraphInput
-            propertyName="text"
-            label="Text"
-            placeholder="Inner text for the tag"
-            defaultText="Text to appear on inside of the element"
-            sendValue={changeInner}
-          />
-          <LinkInput
-            propertyName="href"
-            label="Href"
-            placeholder="www.somesite.com"
-            defaultText="Link for the href"
-            sendValue={changeInner}
-          />
-          <br />
-          <PlaceholderInput
-            propertyName="placeholder"
-            label="Placeholder"
-            placeholder="Placeholder"
-            defaultText="Placeholder for the input"
-            sendValue={changeInner}
-          />
-          <br />
-          <OptionInput
-            label="Options for select"
-            placeholder="e.g: Option1, Option 2"
-            defaultText="Options should be seprated by commas, if have more than one option for a select"
-            sendValue={options => setSelectOption(options)}
-          />
-          <br />
-          <div>
-            <button type="submit">Set Properties</button>
-            <button type="button" onClick={deleteElement}>
+          <div className="actions">
+            <button type="submit" className="submit">
+              Set Properties
+            </button>
+            <button type="button" onClick={deleteElement} className="delete">
               Delete
             </button>
           </div>

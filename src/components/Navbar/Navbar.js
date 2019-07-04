@@ -1,11 +1,9 @@
 import React from "react";
-import * as fs from "fs";
-import * as path from "path";
 import { save } from "save-file";
 
 import { useMenu } from "../../context/Menu/menu-context";
 
-import "./Navbar.css";
+import "./Navbar.scss";
 
 function Navbar() {
   const { changePreview, changeFullScreen } = useMenu();

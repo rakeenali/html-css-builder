@@ -1,4 +1,4 @@
-.fullscreen {
+.container-modal {
   .backdrop {
     content: "";
     position: fixed;
@@ -12,8 +12,8 @@
 
   .modal {
     position: absolute;
-    width: 95vw;
-    height: 90vh;
+    width: 50vw;
+    height: 60vh;
     top: 40%;
     left: 50%;
     z-index: 100;
@@ -23,30 +23,31 @@
     border-radius: 10px;
     padding: 10px;
   }
+
   .modal-header {
     border-bottom: 3px solid #0a0a0a14;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: #05386b;
+  }
 
-    button {
-      border: none;
-      background: transparent;
-      color: inherit;
-      font-size: 33px;
-      cursor: pointer;
+  .modal-header button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    font-size: 1.8rem;
+    font-weight: lighter;
+    outline: none;
+    color: rgba(0, 0, 0, 0.5);
+  }
 
-      &:hover {
-        color: lighten(#05386b, 20%);
-      }
-    }
+  .modal-header button:hover {
+    color: black;
   }
 
   .modal-body {
     margin-top: 4px;
     width: 100%;
     height: calc(100% - 40px);
-    overflow: auto;
   }
 }

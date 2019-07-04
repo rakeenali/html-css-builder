@@ -1,0 +1,96 @@
+.container-drag {
+  background-color: #edf5e1;
+  width: 100%;
+  height: 100%;
+
+  hr {
+    margin: 3px 0;
+  }
+
+  h2 {
+    margin: 8px 0;
+  }
+
+  .backdrop {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    content: "";
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(lighten(#05386b, 20%), 0.7);
+  }
+
+  .menu-modal {
+    position: absolute;
+    top: 40%;
+    left: 40%;
+    transform: translate(-40%, -40%);
+    z-index: 10;
+    width: 80vh;
+    height: 60vh;
+    overflow-y: visible;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    animation: modalTop 0.8s ease-in-out;
+  }
+
+  .code {
+    font-size: 20px;
+    align-self: center;
+    color: #05386b;
+    font-weight: bolder;
+  }
+
+  .button {
+    align-self: flex-end;
+  }
+
+  .button button {
+    outline: none;
+    border: none;
+    font-size: 18px;
+    padding: 10px 30px;
+    text-align: center;
+    border-radius: 20px;
+    // background-image: linear-gradient(to left, #c3b8c5, #36404af0);
+    background-color: rgba(lighten(#05386b, 20%), 0.7);
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .button button:hover {
+    transform: translateY(-2px);
+  }
+  .button button:active {
+    transform: translateY(-1px);
+  }
+}
+
+@keyframes modalTop {
+  0% {
+    top: -200%;
+    left: 40%;
+    transform: translate(-40%, -200%);
+    transition: all 0.3s;
+  }
+
+  50% {
+    top: -100px;
+    left: 40%;
+    transform: translate(-40%, -100%);
+    transition: all 0.3s;
+  }
+
+  100% {
+    top: 40%;
+    left: 40%;
+    transform: translate(-40%, -40%);
+    transition: all 0.3s;
+  }
+}

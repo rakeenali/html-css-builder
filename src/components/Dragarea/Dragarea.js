@@ -1,11 +1,10 @@
 import React from "react";
-import renderHTML from "react-render-html";
 
 import { useItem } from "../../context/Item/item-context";
 import { useBaseContainer } from "../../context/BaseContainer/base-container-context";
 import { useMenu } from "../../context/Menu/menu-context";
 
-import "./Dragarea.css";
+import "./Dragarea.scss";
 
 export default function Dragarea(props) {
   const { item, changeSettings } = useItem();

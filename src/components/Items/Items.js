@@ -3,7 +3,7 @@ import React from "react";
 import { useItem } from "../../context/Item/item-context";
 import { useItemInItem } from "../../context/ItemInItem/item-in-item-context";
 
-import "./Items.css";
+import "./Items.scss";
 
 export default function Items() {
   const { changeItem } = useItem();
@@ -22,7 +22,7 @@ export default function Items() {
 
   return (
     <div className="container-item">
-      <h2>items</h2>
+      <h2>Items</h2>
       <hr />
       <span className="pointer">
         <h3 draggable onDragEnd={dragEnd} data-type="DIV">
@@ -44,9 +44,7 @@ export default function Items() {
           header
         </h3>
       </span>
-      <br />
       <hr />
-      <br />
       <span className="pointer">
         <h3 draggable onDragEnd={dragEnd} data-type="H1">
           h1
@@ -152,6 +150,8 @@ export default function Items() {
           li
         </h3>
       </span>
+      <br />
+      <br />
     </div>
   );
 }

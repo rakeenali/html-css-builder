@@ -16,15 +16,34 @@ export default function DisplaySelect(props) {
   };
 
   return (
-    <div>
-      <label>{label}</label>
-      <br />
-      <select onChange={e => setState(e.target.value)} onBlur={setValue}>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        marginBottom: "15px",
+        marginTop: "5px",
+        alignContent: "center",
+        justifyContent: "center"
+      }}
+    >
+      <label style={{ fontWeight: "bolder" }}>{label}</label>
+      <select
+        onChange={e => setState(e.target.value)}
+        onBlur={setValue}
+        style={{
+          width: "80%",
+          alignSelf: "center",
+          padding: "5px 4px",
+          outline: "none",
+          backgroundColor: "rgba(0,0,0,.7)"
+        }}
+      >
         <option value="" />
         {props.render()}
       </select>
-      <br />
-      <span>{defaultText}</span>
+      <span style={{ fontWeight: "light", color: "black", fontSize: "14px" }}>
+        {defaultText}
+      </span>
     </div>
   );
 }
